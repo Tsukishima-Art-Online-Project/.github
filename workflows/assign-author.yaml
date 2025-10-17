@@ -1,12 +1,12 @@
-name: Assign Author
+name: Auto Author Assign
+
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened]
+
 jobs:
   assign-author:
-    if: ${{ ! contains(fromJson('["renovate[bot]", "dependabot[bot]"]'), github.actor) }}
-    permissions:
-      pull-requests: write
+    name: Auto Author Assign
     runs-on: ubuntu-latest
     steps:
-      - uses: technote-space/assign-author@v1
+      - uses: toshimaru/auto-author-assign@v1.5.0
